@@ -1,0 +1,118 @@
+package member;
+
+public class MemberVO {
+	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, commcode, subcode;
+	
+	public MemberVO() {}
+	
+	
+
+	public MemberVO(String id, String pw, String name, String email, String tel) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.email = email;
+		this.tel = tel;
+	}
+
+
+
+	public String getMember_code() {
+		return member_code;
+	}
+
+	public void setMember_code(String member_code) {
+		this.member_code = member_code;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getNaver_login() {
+		return naver_login;
+	}
+
+	public void setNaver_login(String naver_login) {
+		this.naver_login = naver_login;
+	}
+
+	public String getKakao_login() {
+		return kakao_login;
+	}
+
+	public void setKakao_login(String kakao_login) {
+		this.kakao_login = kakao_login;
+	}
+
+	public String getCommcode() {
+		return commcode;
+	}
+
+	public void setCommcode(String commcode) {
+		this.commcode = commcode;
+	}
+
+	public String getSubcode() {
+		return subcode;
+	}
+
+	public void setSubcode(String subcode) {
+		this.subcode = subcode;
+	}
+	
+	
+}

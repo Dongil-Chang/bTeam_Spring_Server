@@ -27,7 +27,7 @@ public class MemberController {
 	@RequestMapping("/and_login")
 	public void login(String id, String pw, HttpServletResponse res) throws Exception {
 
-//		System.out.println(id + ", " + pw);
+		System.out.println(id + ", " + pw);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id); // 가져온 값 hashmap 에 담아줌

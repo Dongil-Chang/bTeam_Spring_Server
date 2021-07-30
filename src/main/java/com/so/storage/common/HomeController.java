@@ -1,4 +1,4 @@
-package com.so.storage.android;
+package com.so.storage.common;
 
 import java.text.DateFormat;
 import java.util.Date;

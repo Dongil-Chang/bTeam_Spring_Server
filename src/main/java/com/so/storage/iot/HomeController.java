@@ -1,4 +1,4 @@
-package com.so.stotage.web;
+package com.so.storage.iot;
 
 
 import java.util.Locale;

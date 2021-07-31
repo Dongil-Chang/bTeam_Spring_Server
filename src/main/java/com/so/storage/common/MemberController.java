@@ -45,8 +45,64 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping("/and_join")
-	public void join(MemberVO vo) {
+	public void join(MemberVO vo, HttpServletResponse res) throws Exception {
 		//vo = new MemberVO(id, pw, name, email, tel);
+		//vo = new MemberVO(vo.getId(), vo.getPw(), vo.getName(), vo.getEmail(), vo.getTel());
+		String id = vo.getId();
+		String pw = vo.getPw();
+		String name = vo.getName();
+		String email = vo.getEmail();
+		String tel = vo.getTel();
+		vo = new MemberVO(id, pw, name, email, tel);
 		service.member_join(vo);
+		
+		Gson gson = new Gson(); 
+		String json = gson.toJson(vo);
+		PrintWriter out;
+		out = res.getWriter();
+		out.println(json);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/and_leave")
+	public void member_leave(String id, HttpServletResponse res) throws Exception {
+		service.member_delete(id);
+		
+		MemberVO vo = new MemberVO();
+		vo.getId();
+		vo.getPw();
+		vo.getName();
+		vo.getEmail();
+		vo.getTel();
+		
+		Gson gson = new Gson(); 
+		String json = gson.toJson(vo);
+		PrintWriter out;
+		out = res.getWriter();
+		out.println(json);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/and_pwchk")
+	public void member_leave_pwchk(String pw, HttpServletResponse res) throws Exception {
+		MemberVO vo = service.member_pw_check(pw);
+		
+		Gson gson = new Gson(); 
+		String json = gson.toJson(vo);
+		PrintWriter out;
+		out = res.getWriter();
+		out.println(json);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/and_idChk")
+	public void join_idChk(String id, HttpServletResponse res) throws Exception {
+		MemberVO vo = service.member_id_check(id);
+		
+		Gson gson = new Gson(); 
+		String json = gson.toJson(vo);
+		PrintWriter out;
+		out = res.getWriter();
+		out.println(json);
 	}
 }

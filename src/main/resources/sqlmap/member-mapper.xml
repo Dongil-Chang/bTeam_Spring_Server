@@ -7,8 +7,21 @@
 	</select>
 	
 	<insert id="join_insert">
-		insert into user_member (member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, commcode, subcode)
-		values (member_code_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{addr}, #{tel}, #{birth}, #{naver_login}, #{kakao_login}, #{commcode}, #{subcode})
+		insert into user_member (member_code, id, pw, name, email, tel, commcode, subcode)
+		values (member_code_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{tel}, 1, 1)
 	</insert>
+	
+	<select id="pwchk" resultType="member.MemberVO">
+		select * from user_member where pw = #{pw}
+	</select>
+	
+	<select id="idchk" resultType="member.MemberVO">
+		select * from user_member where id = #{id}
+	</select>
+	
+	<delete id="delete">
+		delete from user_member
+		where id = #{id}
+	</delete>
 	
 </mapper>

@@ -21,9 +21,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean member_id_check(String id) {
-		// TODO Auto-generated method stub
-		return false;
+	public MemberVO member_id_check(String id) {
+		return dao.member_id_check(id);
 	}
 
 	@Override
@@ -34,8 +33,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean member_delete(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_delete(id);
 	}
 
 	@Override
@@ -54,6 +52,11 @@ public class MemberServiceImpl implements MemberService {
 	public boolean member_social_update(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public MemberVO member_pw_check(String pw) {
+		return dao.member_pw_check(pw);
 	}
 
 }

@@ -1,11 +1,35 @@
 package member;
 
 public class MemberVO {
-	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, commcode, subcode;
+	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, commcode, subcode, social_email, social_type;
 	
 	public MemberVO() {}
 	
 	
+
+	public String getSocial_email() {
+		return social_email;
+	}
+
+
+
+	public void setSocial_email(String social_email) {
+		this.social_email = social_email;
+	}
+
+
+
+	public String getSocial_type() {
+		return social_type;
+	}
+
+
+
+	public void setSocial_type(String social_type) {
+		this.social_type = social_type;
+	}
+
+
 
 	public MemberVO(String id, String pw, String name, String email, String tel) {
 		super();
@@ -16,7 +40,7 @@ public class MemberVO {
 		this.tel = tel;
 	}
 
-
+		
 
 	public String getMember_code() {
 		return member_code;

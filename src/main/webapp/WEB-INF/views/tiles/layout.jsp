@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>IOT과정 ${title }</title>
+<title>소소한 스토리지 ${title }</title>
 <style type="text/css">
 #wrap {
 display:flex;

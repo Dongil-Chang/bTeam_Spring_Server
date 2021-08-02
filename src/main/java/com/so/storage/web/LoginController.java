@@ -1,0 +1,144 @@
+package com.so.storage.web;
+
+import java.util.HashMap;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import common.CommonService;
+import member.MemberServiceImpl;
+import member.MemberVO;
+
+@Controller
+public class LoginController {
+
+	@Autowired private CommonService common;
+	@Autowired private MemberServiceImpl service;	
+	
+	private String naver_client_id = "ovR_Ev7EIZwvwrn0hdtU";
+	private String kakao_client_id = "cc9bdae0822f9a889e46d57641df634c";
+	
+	// 네이버 로그인 요청
+		@RequestMapping("/naverLogin")
+		public String naverLogin(HttpSession session) {
+			
+			// 세션상태 토큰으로 사용할 문자열 생성
+			String state =  UUID.randomUUID().toString();
+			session.setAttribute("state", state);
+			
+			// 네아로 연동 요청문 샘플
+			// https://nid.naver.com/oauth2.0/authorize?response_type=code
+			//&client_id=CLIENT_ID
+			//&state=STATE_STRING
+			//&redirect_uri=CALLBACK_URL
+			
+			// String 타입의 긴 문장을 입력하기 위하여 StringBuffer 사용하였으며 연결을 위하여  append  메소드를 활용하여 적용
+			StringBuffer url = new StringBuffer("https://nid.naver.com/oauth2.0/authorize?response_type=code");
+			url.append("&client_id=").append(naver_client_id);
+			url.append("&state=").append(state);
+			url.append("&redirect_uri=http://localhost/iot/navercallback");
+			return "redirect:" + url.toString();
+		}
+		
+		@RequestMapping("/navercallback")
+		public String navercallback(@RequestParam(required = false) String code, 
+									String state, HttpSession session,
+									@RequestParam(required = false) String error) {
+			// @RequestParam(required = false) String code : code 는 꼭 필요한 값이 아니라는 의미(전송받지 않을 수 있다...)
+			
+			// 상태 토큰이 일치하지 않거나 콜백 실패시 오류가 발생시 토큰 발급 불가
+			if(!state.equals(session.getAttribute("state")) || error != null ) { // state 값이 맞지 않거나 error 가 없으면 토큰 발급 불가 
+				return "redirect:/"; // 메인 페이지로 이동
+			}
+			
+			// 접근 토큰발급 요청문 샘플
+			// https://nid.naver.com/oauth2.0/token?grant_type=authorization_code
+			// &client_id=jyvqXeaVOVmV
+			// &client_secret=527300A0_COq1_XV33cf
+			// &code=EIc5bFrl4RibFls1
+			// &state=9kgsGTfH4j7IyAkg
+
+			StringBuffer url = new StringBuffer("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code");
+			url.append("&client_id=").append(naver_client_id);
+			url.append("&client_secret=boLpH514TX");
+			url.append("&code=").append(code);
+			url.append("&state=").append(state);
+			
+			JSONObject json = new JSONObject(common.requestAPI(url));
+			String token = json.getString("access_token");
+			String type = json.getString("token_type");
+			
+//			curl  -XGET "https://openapi.naver.com/v1/nid/me" \
+//		      -H "Authorization: Bearer AAAAPIuf0L+qfDkMABQ3IJ8heq2mlw71DojBj3oc2Z6OxMQESVSrtR0dbvsiQbPbP1/cxva23n7mQShtfK4pchdk/rc="
+			url = new StringBuffer("https://openapi.naver.com/v1/nid/me");
+			json = new JSONObject(common.requestAPI(url, type + " " + token));
+			
+			if (json.getString("resultcode").equals("00")) {
+				json = json.getJSONObject("response");
+				
+				MemberVO vo = new MemberVO();
+				vo.setNaver_login("naver");
+				vo.setId(json.getString("id") );
+				vo.setSocial_email(json.getString("email"));
+				vo.setName(json.getString("name"));
+//				vo.setGender(json.has("gender") && json.getString("gender").equals("F") ? "여" : "남");
+				
+				// 네이버 최초 로그인인 경우 회원정보 저장
+				// 네이버 로그인 이력이 있어 회원정보가 있다면 변경 저장
+				
+				if(service.member_social_email(vo) )
+					service.member_social_update(vo);
+				else
+					service.member_social_insert(vo);
+				
+				
+				session.setAttribute("loginInfo", vo);
+			}
+			
+//			{
+//				  "resultcode": "00",
+//				  "message": "success",
+//				  "response": {
+//				    "email": "openapi@naver.com",
+//				    "nickname": "OpenAPI",
+//				    "profile_image": "https://ssl.pstatic.net/static/pwe/address/nodata_33x33.gif",
+//				    "age": "40-49",
+//				    "gender": "F",
+//				    "id": "32742776",
+//				    "name": "오픈 API",
+//				    "birthday": "10-01"
+//				  }
+//			}
+			
+			common.requestAPI(url, type + " " + token);
+			
+			return "redirect:/";
+		}
+		
+		// 로그인처리 요청
+		@ResponseBody @RequestMapping("/webLogin")
+		public Boolean login(String id, String pw, HttpSession session) {
+			// 화면에서 전송한 아이디, 비밀번호가 일치하는 회원정보를 DB에서 조회해온다.
+			// 매개변수 2개를 HashMap 형태로 담아 service 에 전달 
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("pw", pw);
+			MemberVO vo = service.member_login(map);
+			session.setAttribute("loginInfo", vo);
+			return vo == null ? false : true; // 결과값이 null 이면 false / null이 아니면 true
+		}
+		
+	//로그인화면 출력
+	@RequestMapping ("/login")
+	public String login(HttpSession session) {
+		session.setAttribute("category", "login");
+		return "member/login";
+	}
+}

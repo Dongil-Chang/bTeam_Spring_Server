@@ -56,11 +56,12 @@ public class MemberController {
 		vo = new MemberVO(id, pw, name, email, tel);
 		service.member_join(vo);
 		
-		Gson gson = new Gson(); 
-		String json = gson.toJson(vo);
-		PrintWriter out;
-		out = res.getWriter();
-		out.println(json);
+		common_gson(res, vo);
+//		Gson gson = new Gson(); 
+//		String json = gson.toJson(vo);
+//		PrintWriter out;
+//		out = res.getWriter();
+//		out.println(json);
 	}
 	
 	@ResponseBody
@@ -75,11 +76,13 @@ public class MemberController {
 		vo.getEmail();
 		vo.getTel();
 		
-		Gson gson = new Gson(); 
-		String json = gson.toJson(vo);
-		PrintWriter out;
-		out = res.getWriter();
-		out.println(json);
+		common_gson(res, vo);
+		
+//		Gson gson = new Gson(); 
+//		String json = gson.toJson(vo);
+//		PrintWriter out;
+//		out = res.getWriter();
+//		out.println(json);
 	}
 	
 	@ResponseBody
@@ -87,18 +90,30 @@ public class MemberController {
 	public void member_leave_pwchk(String pw, HttpServletResponse res) throws Exception {
 		MemberVO vo = service.member_pw_check(pw);
 		
-		Gson gson = new Gson(); 
-		String json = gson.toJson(vo);
-		PrintWriter out;
-		out = res.getWriter();
-		out.println(json);
-	}
+		common_gson(res, vo);
+//		Gson gson = new Gson(); 
+//		String json = gson.toJson(vo);
+//		PrintWriter out;
+//		out = res.getWriter();
+//		out.println(json);
+	}	
 	
 	@ResponseBody
 	@RequestMapping("/and_idChk")
 	public void join_idChk(String id, HttpServletResponse res) throws Exception {
 		MemberVO vo = service.member_id_check(id);
 		
+		common_gson(res, vo);
+//		Gson gson = new Gson(); 
+//		String json = gson.toJson(vo);
+//		PrintWriter out;
+//		out = res.getWriter();
+//		out.println(json);
+	}
+	
+	
+	
+	public void common_gson(HttpServletResponse res, MemberVO vo) throws Exception {
 		Gson gson = new Gson(); 
 		String json = gson.toJson(vo);
 		PrintWriter out;

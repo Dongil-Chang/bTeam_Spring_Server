@@ -52,9 +52,8 @@ public class NoticeDAO implements NoticeService {
 	}
 
 	@Override
-	public NoticeVO notice_detail(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public NoticeVO notice_detail(int board_num) {
+		return sql.selectOne("notice.mapper.detail", board_num);
 	}
 
 	@Override

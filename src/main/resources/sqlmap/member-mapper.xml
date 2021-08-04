@@ -15,8 +15,14 @@
 		select * from user_member where pw = #{pw}
 	</select>
 	
+<!-- 안드로이드 idchk에서 사용 
 	<select id="idchk" resultType="member.MemberVO">
 		select * from user_member where id = #{id}
+	</select> -->
+	
+	<select id="idchk" resultType="integer">
+		select count(*) from user_member
+		where id = #{id}
 	</select>
 	
 	<delete id="delete">

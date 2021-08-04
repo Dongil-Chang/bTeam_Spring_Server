@@ -34,12 +34,14 @@ public class MemberController {
 		map.put("pw", pw);
 		
 		MemberVO vo = service.member_login(map);
+		
+		common_gson(res, vo);
 
-		Gson gson = new Gson(); 
-		String json = gson.toJson(vo);
-		PrintWriter out;
-		out = res.getWriter();
-		out.println(json);
+//		Gson gson = new Gson(); 
+//		String json = gson.toJson(vo);
+//		PrintWriter out;
+//		out = res.getWriter();
+//		out.println(json);
 		 
 	}
 	
@@ -101,9 +103,14 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/and_idChk")
 	public void join_idChk(String id, HttpServletResponse res) throws Exception {
-		MemberVO vo = service.member_id_check(id);
 		
-		common_gson(res, vo);
+		
+
+// 아래 2줄 추가 주석 (08/03 18:45)		
+//		 MemberVO vo = service.member_id_check(id);
+//		
+//		 common_gson(res, vo);
+		 
 //		Gson gson = new Gson(); 
 //		String json = gson.toJson(vo);
 //		PrintWriter out;

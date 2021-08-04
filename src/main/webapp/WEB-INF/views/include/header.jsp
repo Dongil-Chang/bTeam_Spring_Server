@@ -11,14 +11,15 @@
 			</div>
 			<div class='category' style="margin-left: 100px;">
 			<ul>
-				<li><a href='list.cu' class='${category eq "cu" ? "active" : "" }'>예약하기</a></li>
-				<li><a href='list.hr' class='${category eq "hr" ? "active" : "" }'>Q&A</a></li>
+				<li><a href='list.rv' class='${category eq "rv" ? "active" : "" }'>예약하기</a></li>
+				<li><a href='list.QnA' class='${category eq "QnA" ? "active" : "" }'>Q&A</a></li>
 				<li><a href='list.no'class="${category eq 'no' ? 'active' : ''}">공지사항</a></li>
-				<li><a href='list.bo'class="${category eq 'bo' ? 'active' : ''}">이용안내</a></li>
+				<li><a href='guide.gu'class="${category eq 'gu' ? 'active' : ''}">이용안내</a></li>
 			</ul>
 			</div>
 		   
-		   <div	class='user_nav' style="position: absolute; right: 0; top: 20px; margin-right: 100px;">
+<!-- 	   <div class='user_nav' style="position: absolute; right: 0; top: 20px; margin-right: 100px;"> -->
+		   <div	class='user_nav'>
 		   <ul>
 		  		<!-- 로그인 하지 않는 상태 -->
 		  		<c:if test="${empty loginInfo }">

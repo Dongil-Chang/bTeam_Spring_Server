@@ -122,6 +122,14 @@ public class LoginController {
 			return "redirect:/";
 		}
 		
+		// 로그아웃처리 요청
+		@RequestMapping("/logout")
+		public String logout(HttpSession session) {
+			// 세션에 담김 로그인정보를 삭제한다.
+			session.removeAttribute("loginInfo"); // session 에 담긴 "loginInfo" 값을 삭제
+			return "redirect:/"; // 로그아웃 시 루트(home.jsp)로 이동
+		}
+		
 		// 로그인처리 요청
 		@ResponseBody @RequestMapping("/webLogin")
 		public Boolean login(String id, String pw, HttpSession session) {

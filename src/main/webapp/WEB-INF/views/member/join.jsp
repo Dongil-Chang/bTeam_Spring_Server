@@ -162,11 +162,11 @@ table tr td {text-align: left;}
 		
 		// id=btn-id 클릭시
 		$('#btn-id').on('click', function () {
-			id_check();
+			idchk();
 		});
 		
 		// id_check 함수 선언 및 실행
-		function id_check() {
+		function idchk() {
 			var $id = $('[name=id]');
 			if ($id.hasClass('checked')) return;
 			// alert('OK');
@@ -179,7 +179,7 @@ table tr td {text-align: left;}
 			} 
 			// DB에서 id 값을 json 형태로 가져와 중복 여부 확인
 			$.ajax({
-				url : 'id_check',
+				url : 'idchk',
 				data : {id:$id.val()},
 				success : function ( response ) {
 					var data = join.id_usable( response );					
@@ -198,7 +198,7 @@ table tr td {text-align: left;}
 		$('.chk').on('keyup', function (e) {
 			// id 입력 후 Enter 키 누르면 아이디 중복확인 버튼 실행
 			if($(this).attr('name') == 'id') {
-				if(e.keyCode==13) id_check();
+				if(e.keyCode==13) idchk();
 				else $(this).removeClass('checked');
 			}
 			

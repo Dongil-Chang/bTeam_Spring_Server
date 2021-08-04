@@ -55,7 +55,7 @@
 					<c:forEach begin="1" end ="${vo.indent }" var="i">
 						${i eq vo.indent ? "<img src='imgs/re.gif' />" : "&nbsp;&nbsp;" } 
 					</c:forEach>
-					<a href='detail.no?id=${vo.board_num}'>${vo.board_title }</a>
+					<a href='detail.no?board_num=${vo.board_num}'>${vo.board_title }</a>
 					</td>
 				<td>${vo.name }</td>
 				<td>${vo.board_write_date }</td>

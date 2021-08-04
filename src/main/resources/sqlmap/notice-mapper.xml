@@ -3,6 +3,12 @@
 
 <mapper namespace="notice.mapper">
 
+	<!-- 공지글 상세 내용 조회 -->
+	<select id="detail" resultType="notice.NoticeVO">
+		select tbl_board.* , (select name from user_member where user_member.id = tbl_board.board_writer) name from tbl_board where board_num = #{board_num}
+	</select>
+
+
 	<!-- 공지사항 신규 글 등록 처리 -->
 	<insert id="insert">
 		insert into tbl_board (board_code, board_num, root, board_write_date, board_edit_date, board_title, board_content, board_writer, filename, filepath, commcode, subcode )

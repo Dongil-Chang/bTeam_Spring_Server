@@ -10,7 +10,7 @@
     <img src="imgs/web_main.png" alt="메인">
     <div class="main_font">
       <h1>ADD SPACE<br> FOR YOUR LIFE</h1>
-      <a class="book" href="">예약하기</a>
+      <a class="book" href="list.rv">예약하기</a>
     </div>
   </div>
 </body>

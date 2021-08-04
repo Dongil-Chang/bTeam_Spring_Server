@@ -21,8 +21,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeVO notice_detail(int id) {
-		return dao.notice_detail(id);
+	public NoticeVO notice_detail(int board_num) {
+		return dao.notice_detail(board_num);
 	}
 
 	@Override

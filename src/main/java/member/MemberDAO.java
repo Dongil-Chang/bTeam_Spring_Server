@@ -21,9 +21,9 @@ public class MemberDAO implements MemberService {
 	}
 
 	@Override
-	public MemberVO member_id_check(String id) {
-		return sql.selectOne("member.mapper.idchk", id);
-	}
+	   public boolean member_id_check(String id) {
+	      return  (Integer) sql.selectOne("member.mapper.idchk", id) == 0 ? true : false;
+	   }
 
 	@Override
 	public boolean member_update(MemberVO vo) {

@@ -2,10 +2,10 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:choose>
-	<c:when test="${category eq 'cu' }"><c:set var="title" value="고객관리"/></c:when>
-	<c:when test="${category eq 'hr' }"><c:set var="title" value="사원관리"/></c:when>
+	<c:when test="${category eq 'rv' }"><c:set var="title" value="예약하기"/></c:when>
+	<c:when test="${category eq 'QnA' }"><c:set var="title" value="Q&A"/></c:when>
 	<c:when test="${category eq 'no' }"><c:set var="title" value="공지사항"/></c:when>
-	<c:when test="${category eq 'bo' }"><c:set var="title" value="방명록"/></c:when>
+	<c:when test="${category eq 'gu' }"><c:set var="title" value="이용안내"/></c:when>
 	<c:when test="${category eq 'da' }"><c:set var="title" value="공공데이터"/></c:when>
 	<c:when test="${category eq 'vi' }"><c:set var="title" value="시각화"/></c:when>
 	<c:when test="${category eq 'join' }"><c:set var="title" value="회원가입"/></c:when>
@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소소한 스토리지 ${title }</title>
+<title>소소한 스토리지 > ${title }</title>
 <style type="text/css">
 #wrap {
 display:flex;

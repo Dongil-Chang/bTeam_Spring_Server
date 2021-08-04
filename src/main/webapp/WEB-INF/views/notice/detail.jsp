@@ -16,22 +16,23 @@
 		</tr>	
 		<tr>
 			<th>작성자</th>
-			<td>${vo.board_writer }</td>
+<%-- 		<td>${vo.board_writer }</td> --%>
+			<td>${vo.name }</td>
 			<th class='w-px100'>작성일자</th>
-			<td class='w-px100'>${vo.board_writedate }</td>			
+			<td class='w-px100'>${vo.board_write_date }</td>			
 			<th class='w-px80'>조회수</th>
 			<td class='w-px80'>${vo.board_readcnt }</td>			
 		</tr>	
 		<tr>
 			<th>내용</th>
-			<td class='left' colspan='5'>${fn:replace(vo.content, crlf, '<br>') }</td>
-			<!-- ${fn:replace(vo.content, crlf, '<br>') } 내용 중 엔터에 해당하는 부분을 <br> 태그로 치환  -->			
+			<td class='left' colspan='5'>${fn:replace(vo.board_content, crlf, '<br>') }</td>
+			<!-- ${fn:replace(vo.board_content, crlf, '<br>') } 내용 중 엔터에 해당하는 부분을 <br> 태그로 치환  -->			
 		</tr>	
 		<tr>
 			<th>첨부파일</th>
-			<td class='left' colspan='5'>${vo.board_filename }
-				<c:if test="${not empty vo.board_filename }">	<!-- 첨부 파일이 없지 않으면 아이콘 표시  -->
-					<a href='download.no?id=${vo.id }'><i class="font-img fas fa-download"></i></a>
+			<td class='left' colspan='5'>${vo.filename }
+				<c:if test="${not empty vo.filename }">	<!-- 첨부 파일이 없지 않으면 아이콘 표시  -->
+					<a href='download.no?board_num=${vo.board_num }'><i class="font-img fas fa-download"></i></a>
 				</c:if>
 			</td>			
 		</tr>

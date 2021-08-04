@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO member_id_check(String id) {
+	public boolean member_id_check(String id) {
 		return dao.member_id_check(id);
 	}
 

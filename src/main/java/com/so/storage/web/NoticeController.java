@@ -28,6 +28,19 @@ public class NoticeController {
 	@Autowired private MemberServiceImpl member;
 	@Autowired private NoticePage page;
 	
+	// 공지사항 상세화면 요청
+		@RequestMapping("/detail.no")
+		public String detail(int board_num, Model model) {
+			// 상세화면 요청 전 조회수 증가
+			service.notice_read(board_num);
+			
+			// 선택한 공지사항 정보를 DB에서 조회해 와 상세화면에 출력
+			model.addAttribute("vo", service.notice_detail(board_num));
+			model.addAttribute("crlf", "\r\n");
+			model.addAttribute("page", page);
+			return "notice/detail";
+		}
+	
 	// 신규 공지사항 저장처리 요청
 		@RequestMapping("/insert.no")
 		public String insert(NoticeVO vo, MultipartFile file, HttpSession session) {

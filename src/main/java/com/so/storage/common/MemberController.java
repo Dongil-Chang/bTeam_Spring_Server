@@ -36,13 +36,6 @@ public class MemberController {
 		MemberVO vo = service.member_login(map);
 		
 		common_gson(res, vo);
-
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(vo);
-//		PrintWriter out;
-//		out = res.getWriter();
-//		out.println(json);
-		 
 	}
 	
 	@ResponseBody
@@ -59,11 +52,6 @@ public class MemberController {
 		service.member_join(vo);
 		
 		common_gson(res, vo);
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(vo);
-//		PrintWriter out;
-//		out = res.getWriter();
-//		out.println(json);
 	}
 	
 	@ResponseBody
@@ -79,12 +67,6 @@ public class MemberController {
 		vo.getTel();
 		
 		common_gson(res, vo);
-		
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(vo);
-//		PrintWriter out;
-//		out = res.getWriter();
-//		out.println(json);
 	}
 	
 	@ResponseBody
@@ -93,11 +75,6 @@ public class MemberController {
 		MemberVO vo = service.member_pw_check(pw);
 		
 		common_gson(res, vo);
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(vo);
-//		PrintWriter out;
-//		out = res.getWriter();
-//		out.println(json);
 	}	
 	
 	@ResponseBody
@@ -111,11 +88,6 @@ public class MemberController {
 //		
 //		 common_gson(res, vo);
 		 
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(vo);
-//		PrintWriter out;
-//		out = res.getWriter();
-//		out.println(json);
 	}
 	
 	

@@ -1,11 +1,19 @@
 package member;
 
 public class MemberVO {
-	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, commcode, subcode, social_email, social_type;
+	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, 
+		commcode, subcode, social_email, social_type, booking;
 	
 	public MemberVO() {}
 	
 	
+	public String getBooking() {
+		return booking;
+	}
+
+	public void setBooking(String booking) {
+		this.booking = booking;
+	}
 
 	public String getSocial_email() {
 		return social_email;

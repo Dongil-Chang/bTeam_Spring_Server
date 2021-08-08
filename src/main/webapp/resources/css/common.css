@@ -74,9 +74,7 @@ table th {
 background:#f6f6f6; 
 }
 
-table tr td a:hover {
-font-weight:bold; 
-}
+table tr td a:hover, ul.grid li a:hover {font-weight: 700; color: red; }
 
 
 .btnSet {

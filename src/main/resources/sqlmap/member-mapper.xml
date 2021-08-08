@@ -3,7 +3,8 @@
 <mapper namespace="member.mapper">
 	
 	<select id="login" resultType="member.MemberVO">
-		select * from user_member where id = #{id} and pw = #{pw}
+		select * from user_member 
+		where id = #{id} and pw = #{pw}
 	</select>
 	
 	<insert id="join_insert">

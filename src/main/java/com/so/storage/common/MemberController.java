@@ -6,9 +6,11 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -79,9 +81,9 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping("/and_idChk")
-	public void join_idChk(String id, HttpServletResponse res) throws Exception {
+	public boolean join_idChk(String id, HttpServletResponse res) throws Exception {
 		
-		
+		return service.member_id_check(id);
 
 // 아래 2줄 추가 주석 (08/03 18:45)		
 //		 MemberVO vo = service.member_id_check(id);
@@ -91,6 +93,12 @@ public class MemberController {
 	}
 	
 	
+	// 마이페이지 화면 이동
+	@RequestMapping("/mypage.my")
+	public String mypage(HttpSession session, Model model) {
+		session.setAttribute("category", "my");
+		return "member/mypage";
+	}
 	
 	public void common_gson(HttpServletResponse res, MemberVO vo) throws Exception {
 		Gson gson = new Gson(); 

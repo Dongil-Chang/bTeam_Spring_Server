@@ -11,10 +11,19 @@
 			</div>
 			<div class='category' style="margin-left: 100px;">
 			<ul>
-				<li><a href='list.rv' class='${category eq "rv" ? "active" : "" }'>예약하기</a></li>
-				<li><a href='list.QnA' class='${category eq "QnA" ? "active" : "" }'>Q&A</a></li>
-				<li><a href='list.no'class="${category eq 'no' ? 'active' : ''}">공지사항</a></li>
 				<li><a href='guide.gu'class="${category eq 'gu' ? 'active' : ''}">이용안내</a></li>
+				<li><a href='list.rv' class='${category eq "rv" ? "active" : "" }'>예약하기</a></li>
+				<li><a href='list.no'class="${category eq 'no' ? 'active' : ''}">공지사항</a></li>
+				<%-- <li><a href='list.iot'class="${category eq 'iot' ? 'active' : ''}">IoT</a></li> --%>
+				<li><a href='list.QnA' class='${category eq "QnA" ? "active" : "" }'>FAQ</a></li>
+				
+<%-- 				<c:if test="${loginInfo.subcode eq '1  ' || loginInfo.subcode eq '3  '}">
+					<li><a href='mypage.my'class="${category eq 'my' ? 'active' : ''}">마이페이지</a></li>
+				</c:if> --%>
+				
+				<c:if test="${loginInfo.subcode eq '3  '}">
+					<li><a href='master.ma'class="${category eq 'ma' ? 'active' : ''}">관리자</a></li>
+				</c:if>
 			</ul>
 			</div>
 		   
@@ -31,7 +40,8 @@
 		  		<!-- 로그인한 상태 -->
 		  		<c:if test="${!empty loginInfo }">
 		  		<li>
-		  			<strong>${loginInfo.name }</strong>님 <a href="logout" class="btn-fill">로그아웃</a>
+		  			<a href='mypage.my'class="${category eq 'my' ? 'active' : ''}"><span class='log_name'>${loginInfo.name }</span> 님</a>
+		  			<a href="logout" class="btn-fill">로그아웃</a>
 		  		</li>
 		  		</c:if>
 		   </ul>
@@ -44,6 +54,7 @@
 	background-color : rgb(255,255,255);
 	position : fixed;
 	width : 100%;
+	height : 50px;
 	top : 0;
 	left : 0;
 	padding : 10px 0;
@@ -80,7 +91,8 @@ header .category ul li a:hover, header .category ul li a.active{
 }
 
 .user_nav { float : right; line-height : 56px;}
-
+.log_name {font-size : 18px; font-weight: 800; color : #8c8c89; }
+.log_name:hover {color : #5fa7d3; }
 </style>
 <link rel="stylesheet" type="text/css" href="css/common.css?v=<%=new java.util.Date().getTime()%>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

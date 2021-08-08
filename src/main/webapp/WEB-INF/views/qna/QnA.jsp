@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
 <html>
@@ -86,30 +87,48 @@ background: #caf0f8;
 
 </head>
 <body>
-<h3>소소한 Q&A</h3>
+<h3>소소한 FAQ</h3>
 <div class="faq">
     <div class="faqHeader">
     <!--button type="button" class="showAll">답변 모두 여닫기</button-->
+    	<ul>
+			<!-- 관리자로 로그인된 경우만 글쓰기 가능 -->
+			<!-- 로그인 시 정보를 담고 있는 session.setAttribute("loginInfo", vo)을 통해 admin 값을 가져와 비교함. -->			
+			<c:if test="${loginInfo.subcode eq '3  '}">
+				<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
+			</c:if>
+		</ul>
     </div>
+    <div>
     	<ul class="faqBody">
-        	<li class="article" id="a1">
+    		<c:forEach items="${faq}" var="vo">
+    			<li class="article" id="a1">
+	            	<p class="q">
+	            		<a href="#a1">${vo.faq_title }<i class="fas fa-angle-double-down"></i></a>
+	            	</p>
+	        	    <p class="a">${vo.faq_content }</p>
+       	 		</li>
+    		</c:forEach>
+    	
+        	<!-- <li class="article" id="a1">
             	<p class="q">
             		<a href="#a1">소소한 스토리지는 어떤 서비스를 제공하고 있나요?<i class="fas fa-angle-double-down"></i></a>
             	</p>
         	    <p class="a">차츰 차츰 알려드리도록 하겠습니다. ^^</p>
-       	 </li>
+       	 	</li>
         	<li class="article" id="a2">
            		<p class="q">
            	 		<a href="#a2">bteam은 어떤 컨셉을 가지고 프로젝트를 진행 중인가요?<i class="fas fa-angle-double-down"></i></a></p>
         	    <p class="a">bteam은 특별한 기능보단 기본에 충실한 결과를 만들기 위해 노력 중입니다.</p>
-       	 </li>
+       	 	</li>
         	<li class="article" id="a3">
             	<p class="q">
             		<a href="#a3">이제부터 시작입니다.<i class="fas fa-angle-double-down"></i></a></p>
             	<p class="a">늦었다고 생각하지 않습니다. 좋은 결과를 위해 우리 함께 합시다.</p>
-        	</li>
+        	</li> -->
     	</ul>
-	</div>
+    </div>
+</div>
 <script>
 jQuery(function($){
     // Frequently Asked Question

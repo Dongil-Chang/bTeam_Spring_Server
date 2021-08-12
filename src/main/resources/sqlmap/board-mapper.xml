@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.mapper">
+	
+	<!-- 1:1 문의 해당 글 수정 -->
+	<update id="cu_update">
+		update tbl_board set board_title = #{board_title},
+			board_content = #{board_content}, type=#{type}
+		where board_num = #{board_num}
+	</update>
+
+	<!-- 1:1 문의 해당 글 상세 조회 -->
+	<select id="cu_detail" resultType="contactus.ContactUsVO">
+		select b.*, (select name from user_member where user_member.id=b.BOARD_WRITER) name 
+		from tbl_board b
+		where subcode = '4  '
+		and board_num = #{board_num}
+	</select>
+
+	<!-- 1:1 문의 신규 저장 -->
+	<insert id="cu_insert">
+		insert into tbl_board (board_title, board_content, board_writer, type, commcode, subcode)
+		values (#{board_title}, #{board_content}, #{board_writer}, #{type}, '4', '4')
+	</insert>
+
+	<!-- 1:1 문의 전체 글 조회 -->
+	<select id="cu_list" resultType="contactus.ContactUsVO">
+		select rownum no, b.* 
+		from (select * from tbl_board order by board_num) b
+		where subcode = '4  '
+	</select>
+	
+</mapper>

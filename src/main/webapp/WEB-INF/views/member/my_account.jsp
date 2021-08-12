@@ -12,9 +12,6 @@ table tr td {text-align: left;}
 .valid, .invalid {font-size : 13px; font-weight: bold; font-style: italic;}
 .valid { color: green; }
 .invalid { color: red; }
-.checkbox_group {width: 40%; margin:0 auto; }
-.checkbox_group ul li {text-align: left; margin-left: 100px;}
-.checkbox_group ul li span{text-align: right; color : #ff0000;}
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  <!-- DatePicker  css 복사  -->
 </head>
@@ -23,6 +20,10 @@ table tr td {text-align: left;}
 	<p class='w-pct40' style = 'margin:0 auto; text-align: right; padding-bottom: 10px font-size: 12px;'>* 은 필수 입력 항목입니다.</p>	
 	<form action="join"  method="post">
 		<table class='w-pct40'>
+			<tr>
+				<th class='w-px120'>*성명</th>
+				<td><input type="text" name='name' /> </td>
+			</tr>
 			<tr>
 				<th>*아이디</th>
 				<td>
@@ -46,8 +47,11 @@ table tr td {text-align: left;}
 				</td>
 			</tr>
 			<tr>
-				<th class='w-px120'>*성명</th>
-				<td><input type="text" name='name' /> </td>
+				<th>*성별</th>
+				<td>
+					<label><input type="radio" name='gender' value='남' />남</label>
+					<label><input type="radio" name='gender' value='여' checked />여</label>
+				</td>
 			</tr>
 			<tr>
 				<th>*이메일</th>
@@ -57,32 +61,28 @@ table tr td {text-align: left;}
 				</td>
 			</tr>
 			<tr>
+				<th>생년월일</th>
+				<td><input type="text" name='birth' readonly /> 
+					<a id='delete' ><i class="font-img fas fa-minus-circle"></i></a>	
+				</td>
+			</tr>
+			<tr>
 				<th>전화번호</th>
 				<td>
 					<input type="text" name='tel' class = 'w-px40' maxlength="3" />
 					- <input type="text" name='tel' class = 'w-px40' maxlength="4" />
 					- <input type="text" name='tel' class = 'w-px40' maxlength="4" />
 				</td>
-			</tr>					
+			</tr>			
+			<tr>
+				<th>주소</th>
+				<td class='addr'> <a class='btn-fill-s' onclick = 'daum_post()'>우편번호 찾기</a>
+					<input type="text" name='post' class = 'w-px60' readonly /> <br/>				
+					<input type="text" name='addr' readonly /> <br/>				
+					<input type="text" name='addr' />				
+				</td>
+			</tr>
 		</table>
-		<div class='checkbox_group'>
-			<ul>
-				<li>
-					<input type='checkbox' id='check_all' />
-					<label for='check_all'>전체동의</label>
-				</li>
-				<li>
-					<input type='checkbox' class='normal' />
-					<label for='check_1'>개인정보 처리방침 동의</label>
-					<a class='btn-fill-s' href='privacy_usage.me'>약관보기</a>
-				</li>
-				<li>
-					<input type='checkbox' class='normal' />
-					<label for='check_2'>서비스 이용약관 동의</label>
-					<a class='btn-fill-s' href='join_service.me'>약관보기</a>
-				</li>
-			</ul>
-		</div>
 	</form>
 	
 	<div class='btnSet'>
@@ -216,25 +216,6 @@ table tr td {text-align: left;}
 			$('[name=birth]').val('');
 			$('#delete').css('display', 'none');
 		});
-		
-		
-		// 체크박스 전체 선택
-		$('.checkbox_group').on("click", "#check_all", function () {
-			$(this).parents(".checkbox_group").find('input').prop("checked", $(this).is(":checked"));
-		});
-		
-		// 체크박스 개별 선택
-		$(".checkbox_group").on("click", ".normal", function() {
-			var is_checked = true;
-			
-			$(".checkbox_group .normal").each(function () {
-				is_checked= is_checked && $(this).is(":checked");
-			});
-			
-			$("#check_all").prop("checked", is_checked);
-		});
-		
-		
 		
 		// 특정 날짜 이후 날짜 선택이 안되게끔... 
 		function after(date) {

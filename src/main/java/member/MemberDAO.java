@@ -1,10 +1,13 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import manager.ProvisionVO;
 
 @Repository
 public class MemberDAO implements MemberService {
@@ -58,6 +61,16 @@ public class MemberDAO implements MemberService {
 	@Override
 	public MemberVO member_pw_check(String pw) {
 		return sql.selectOne("member.mapper.pwchk", pw);
+	}
+
+	@Override
+	public ProvisionVO provision_list() {
+		return sql.selectOne("member.mapper.provision_list");
+	}
+
+	@Override
+	public ProvisionVO join_service_list() {
+		return sql.selectOne("member.mapper.join_service_list");
 	}
 
 }

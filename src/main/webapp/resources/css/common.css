@@ -203,6 +203,13 @@ margin-left:3px;
 	transform:translate(-50%, -50%);	
 }
 
+.p_textarea {
+	font-size:15px;
+	border:1px solid #b0b0b0;
+	padding:10px;
+	height:350px;
+	width:calc(100% - 24px);
+}
 
 
 .w-pct80 { width:80% }

@@ -47,6 +47,11 @@
 		</tr>
 	</thead>
 	<tbody>	
+		<c:if test="${empty page.list }">
+			<tr>
+				<td colspan='5'>공지사항 정보가 없습니다.</td>
+			</tr>
+		</c:if>
 		<c:forEach items = '${page.list }' var='vo'>
 			<tr>
 				<td>${vo.board_num }</td>

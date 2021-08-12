@@ -100,6 +100,20 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
+	// 마이페이지 정보 수정 화면 이동
+	@RequestMapping("/myinfo.my")
+	public String myinfo_chk(HttpSession session) {
+		session.setAttribute("my_category", "myinfo");
+		return "member/myinfo";
+	}
+	
+	// 마이페이지 정보 수정
+	@RequestMapping("/myinfo_chk")
+	public String myinfo_chk(String password) {
+		
+		return "member/";
+	}
+	
 	public void common_gson(HttpServletResponse res, MemberVO vo) throws Exception {
 		Gson gson = new Gson(); 
 		String json = gson.toJson(vo);

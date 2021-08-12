@@ -1,6 +1,9 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
+
+import manager.ProvisionVO;
 
 public interface MemberService {
 	boolean member_join(MemberVO vo); //회원가입시 회원정보 저장
@@ -16,4 +19,9 @@ public interface MemberService {
 	boolean member_social_email(MemberVO vo); //소셜회원 정보 존재여부
 	boolean member_social_insert(MemberVO vo); //소셜회원정보 신규저장
 	boolean member_social_update(MemberVO vo); //소셜회원정보 변경저장
+	
+	
+	ProvisionVO provision_list();// 회원 약관 내용 조회
+	ProvisionVO join_service_list();// 서비스 이용 약관 내용 조회
+	
 }

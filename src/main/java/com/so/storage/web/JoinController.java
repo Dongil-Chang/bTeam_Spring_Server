@@ -5,10 +5,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.CommonService;
+import manager.ProvisionVO;
 import member.MemberServiceImpl;
 import member.MemberVO;
 
@@ -50,4 +52,19 @@ public class JoinController {
 			session.setAttribute("category", "join");
 			return "member/join";
 		}
+		
+	// 개인정보 수집 동의 페이지 요청
+		@RequestMapping("/privacy_usage.me")
+		public String privacy_usage(Model model) {
+			model.addAttribute("vo", service.provision_list());
+			return "member/privacy-usage";
+		}
+		
+	// 서비스 이용약관 페이지 요청
+		@RequestMapping("/join_service.me")
+		public String join_service (Model model) {
+			model.addAttribute("vo", service.join_service_list());
+			return "member/join_service";
+		}
+	
 }

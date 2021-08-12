@@ -1,9 +1,12 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import manager.ProvisionVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -57,6 +60,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO member_pw_check(String pw) {
 		return dao.member_pw_check(pw);
+	}
+
+	@Override
+	public ProvisionVO provision_list() {
+		return dao.provision_list();
+	}
+
+	@Override
+	public ProvisionVO join_service_list() {
+		return dao.join_service_list();
 	}
 
 }

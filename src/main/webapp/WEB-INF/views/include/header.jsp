@@ -14,7 +14,7 @@
 				<li><a href='guide.gu'class="${category eq 'gu' ? 'active' : ''}">이용안내</a></li>
 				<li><a href='list.rv' class='${category eq "rv" ? "active" : "" }'>예약하기</a></li>
 				<li><a href='list.no'class="${category eq 'no' ? 'active' : ''}">공지사항</a></li>
-				<%-- <li><a href='list.iot'class="${category eq 'iot' ? 'active' : ''}">IoT</a></li> --%>
+				<li><a href='cu_new.qa'class="${category eq 'qa' ? 'active' : ''}">1:1문의</a></li>
 				<li><a href='list.QnA' class='${category eq "QnA" ? "active" : "" }'>FAQ</a></li>
 				
 <%-- 				<c:if test="${loginInfo.subcode eq '1  ' || loginInfo.subcode eq '3  '}">
@@ -83,7 +83,7 @@ font-size:18px; float : left; 	line-height : 56px;
 }
 
 header .category ul li:not(:first-child){
-padding-left: 30px;
+padding-left: 20px;
 }
 
 header .category ul li a:hover, header .category ul li a.active{

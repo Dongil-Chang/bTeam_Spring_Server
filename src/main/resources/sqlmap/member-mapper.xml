@@ -31,4 +31,16 @@
 		where id = #{id}
 	</delete>
 	
+	<!-- 이용약관 목록 조회 -->
+	<select id="provision_list" resultType="manager.ProvisionVO">
+		select * from tbl_provision
+		where provision_nm like '%' || '정보' || '%'
+	</select>
+	
+	<!-- 이용약관 목록 조회 -->
+	<select id="join_service_list" resultType="manager.ProvisionVO">
+		select * from tbl_provision
+		where provision_nm like '%' || '이용약관' || '%'
+	</select>
+	
 </mapper>

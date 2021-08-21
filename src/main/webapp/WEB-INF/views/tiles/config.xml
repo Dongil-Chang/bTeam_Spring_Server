@@ -12,6 +12,10 @@
 <!-- 
 employee/list.jsp,  customer/detail.jsp, notice/modify.jsp
  -->
+
+<definition name="error/*" template="/WEB-INF/views/tiles/default.jsp">
+	<put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp"/>
+</definition>
  
 <definition name="member/login" template="/WEB-INF/views/tiles/default.jsp">
 	<put-attribute name="content" value="/WEB-INF/views/member/login.jsp"/>

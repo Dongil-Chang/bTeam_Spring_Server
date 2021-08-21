@@ -28,7 +28,7 @@ img.social:first-child {margin-bottom:10px;}
 		</div>
 	
 		<div id ='login'>
-			<input type="text" placeholder="아이디" id='userid' />
+			<input type="text" placeholder="아이디" id='userid' onkeydown="onlyAlphabet(this)" autofocus  />
 			<input type="password" placeholder="비밀번호" id='userpw' 
 					onkeypress="if( event.keyCode == 13) go_login()" />
 				<!-- onkeypress : Enter 키를 눌렀을 때 go_login() -->
@@ -67,6 +67,10 @@ function go_login() {
 			alert(text + ':' + req.status);
 		}
 	});
+}
+
+function onlyAlphabet(ele) {
+	  ele.value = ele.value.replace(/[^\\!-z]/gi,"");
 }
 </script>	
 </body>

@@ -16,7 +16,6 @@
 		</tr>	
 		<tr>
 			<th>작성자</th>
-<%-- 		<td>${vo.board_writer }</td> --%>
 			<td>${vo.name }</td>
 			<th class='w-px100'>작성일자</th>
 			<td class='w-px100'>${vo.board_write_date }</td>			
@@ -32,7 +31,7 @@
 			<th>첨부파일</th>
 			<td class='left' colspan='5'>${vo.filename }
 				<c:if test="${not empty vo.filename }">	<!-- 첨부 파일이 없지 않으면 아이콘 표시  -->
-					<a href='download.no?board_num=${vo.board_num }'><i class="font-img fas fa-download"></i></a>
+					<a href='download.no?id=${vo.board_num }'><i class="font-img fas fa-download"></i></a>
 				</c:if>
 			</td>			
 		</tr>
@@ -46,12 +45,12 @@
 			 2. 로그인한 관리자가 쓴 글인 경우 -->
 			 
 		<c:if test="${vo.board_writer eq loginInfo.id }">	 		
-			<a class='btn-fill' href='modify.no?id=${vo.id }'>수정</a>
-			<a class='btn-fill' onclick=" if(confirm('정말 삭제?')) { href='delete.no?id=${vo.id}' } ">삭제</a>
+			<a class='btn-fill' href='modify.no?id=${vo.board_num }'>수정</a>
+			<a class='btn-fill' onclick=" if(confirm('정말 삭제?')) { href='delete.no?id=${vo.board_num}' } ">삭제</a>
 		</c:if>
 		<!-- 로그인되어 있는 경우 답글 쓰기 가능 -->
 		<c:if test="${!empty loginInfo }">
-			<a class='btn-fill' href='reply.no?id=${vo.id }'>답글쓰기</a>
+			<a class='btn-fill' href='reply.no?id=${vo.board_num }'>답글쓰기</a>
 		</c:if>
 	</div>	
 </body>

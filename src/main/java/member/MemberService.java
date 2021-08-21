@@ -24,4 +24,6 @@ public interface MemberService {
 	ProvisionVO provision_list();// 회원 약관 내용 조회
 	ProvisionVO join_service_list();// 서비스 이용 약관 내용 조회
 	
+	
+	List<MemberVO> mg_member_list(); 	// 회원목록 조회(안드로이드)
 }

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletOutputStream;
@@ -20,6 +21,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -200,9 +203,38 @@ public class CommonService {
 			System.out.println(e.getMessage());
 		}
 	}
+
+	// 
+	public Map<String, Object> json_requestAPI(StringBuffer url) {
+		JSONObject json = new JSONObject( requestAPI(url));		
+		json = json.getJSONObject("response");
+
+		// 조회 한도 초과 여부 확인 resultCode 가 99 이면 한도초과, 0이면 정상 		
+		int code = json.getJSONObject("header").getInt("resultCode");
+		if (code == 0 ) { 			// 정상
+			
+			json = json.getJSONObject("body");
+			
+			// 전체 업체 수 가져오기
+			int count = 0;
+			if (json.has("totalCount") ) count = json.getInt( "totalCount" );
+			if (json.get("items") instanceof JSONObject) {
+				json = json.getJSONObject("items");
+				
+				// 배열 형태가 아닌 경우 배열 형태로 변경
+				if(json.get("item") instanceof JSONObject )
+					json.put("item", new JSONArray().put(0, json.get("item")));
+				
+			} // if
+				// json = json.getJSONObject("items");
+			json.put("count", count);
+		} else {				// 한도초과시
+			json.put("resultCode", code);
+		}
+		return json.toMap();	// 맵 형태로 값을 전달
+	}
 	
 	// API 요청을 위한 Service
-	
 	public String requestAPI(StringBuffer url, String property) {
 		String result = "";
 		try {
@@ -214,7 +246,7 @@ public class CommonService {
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
 			System.out.print("responseCode=" + responseCode);
-			if (responseCode == 200) { // 정상 호출
+			if (responseCode >= 200 && responseCode <= 300) { // 정상 호출
 				br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8")); // 한글 깨짐 처리
 			} else { // 에러 발생
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"));
@@ -243,7 +275,7 @@ public class CommonService {
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
 			System.out.print("responseCode=" + responseCode);
-			if (responseCode == 200) { // 정상 호출
+			if (responseCode >= 200 && responseCode <= 300) { // 정상 호출
 				br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8")); // 한글 깨짐 처리
 			} else { // 에러 발생
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"));

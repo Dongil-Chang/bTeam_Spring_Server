@@ -30,8 +30,7 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public boolean member_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return sql.update("member.mapper.account_update", vo) == 1 ? true : false;
 	}
 
 	@Override
@@ -71,6 +70,11 @@ public class MemberDAO implements MemberService {
 	@Override
 	public ProvisionVO join_service_list() {
 		return sql.selectOne("member.mapper.join_service_list");
+	}
+
+	@Override
+	public List<MemberVO> mg_member_list() {
+		return sql.selectList("member.mapper.mg_memberlist");
 	}
 
 }

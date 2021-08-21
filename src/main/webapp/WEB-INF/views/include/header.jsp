@@ -1,4 +1,4 @@
-<%@page import="java.util.Date"%>
+<%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header style="padding:15px 0; text-align:left; border-bottom: 1px solid #ccc">
@@ -14,14 +14,16 @@
 				<li><a href='guide.gu'class="${category eq 'gu' ? 'active' : ''}">이용안내</a></li>
 				<li><a href='list.rv' class='${category eq "rv" ? "active" : "" }'>예약하기</a></li>
 				<li><a href='list.no'class="${category eq 'no' ? 'active' : ''}">공지사항</a></li>
-				<li><a href='cu_new.qa'class="${category eq 'qa' ? 'active' : ''}">1:1문의</a></li>
+				<c:if test="${!empty loginInfo }">
+					<li><a href='cu_new.qa'class="${category eq 'qa' ? 'active' : ''}">1:1문의</a></li>
+				</c:if>
 				<li><a href='list.QnA' class='${category eq "QnA" ? "active" : "" }'>FAQ</a></li>
 				
 <%-- 				<c:if test="${loginInfo.subcode eq '1  ' || loginInfo.subcode eq '3  '}">
 					<li><a href='mypage.my'class="${category eq 'my' ? 'active' : ''}">마이페이지</a></li>
 				</c:if> --%>
 				
-				<c:if test="${loginInfo.subcode eq '3  '}">
+				<c:if test="${loginInfo.subcode eq '3'}">
 					<li><a href='master.ma'class="${category eq 'ma' ? 'active' : ''}">관리자</a></li>
 				</c:if>
 			</ul>

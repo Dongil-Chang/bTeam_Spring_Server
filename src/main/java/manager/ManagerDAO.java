@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import member.MemberPage;
 import member.MemberVO;
 
 @Repository
@@ -16,6 +17,13 @@ public class ManagerDAO implements ManagerService {
 	@Override
 	public List<MemberVO> member_list() {
 		return sql.selectList("manager.mapper.member_list");
+	}
+	
+	@Override
+	public MemberPage member_list(MemberPage page) {
+		page.setTotalList(sql.selectOne("manager.mapper.totalList", page) );  
+		page.setList( sql.selectList("manager.mapper.list", page) );
+		return page;
 	}
 
 	@Override
@@ -44,29 +52,5 @@ public class ManagerDAO implements ManagerService {
 		sql.delete("manager.mapper.provision_delete", provision_code);
 	}
 
-	@Override
-	public void faq_insert(FaqVO vo) {
-		sql.insert("manager.mapper.faq_insert", vo);
-	}
-
-	@Override
-	public List<FaqVO> faq_list() {
-		return sql.selectList("manager.mapper.faq_list");
-	}
-
-	@Override
-	public FaqVO faq_detail(String faq_code) {
-		return sql.selectOne("manager.mapper.faq_detail", faq_code);
-	}
-
-	@Override
-	public void faq_update(FaqVO vo) {
-		sql.update("manager.mapper.faq_update", vo);
-	}
-
-	@Override
-	public void faq_delete(String faq_code) {
-		sql.delete("manager.mapper.faq_delete", faq_code);
-	}
 
 }

@@ -30,8 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean member_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_update(vo);
 	}
 
 	@Override
@@ -70,6 +69,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ProvisionVO join_service_list() {
 		return dao.join_service_list();
+	}
+
+	@Override
+	public List<MemberVO> mg_member_list() {
+		return dao.mg_member_list();
 	}
 
 }

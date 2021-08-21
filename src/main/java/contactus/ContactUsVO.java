@@ -6,29 +6,7 @@ public class ContactUsVO {
 
 	private String board_code, board_title, board_content, board_writer, name
 		, filename, filepath, commcode, subcode, type;
-	private int no, board_num, board_readcnt, root, step, indent;
-
-	private Date board_write_date, board_edit_date;
-	
-	public Date getBoard_edit_date() {
-		return board_edit_date;
-	}
-	public void setBoard_edit_date(Date board_edit_date) {
-		this.board_edit_date = board_edit_date;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	
+	private int no, board_num, readcnt, root, step, indent;
 	public String getBoard_code() {
 		return board_code;
 	}
@@ -83,17 +61,29 @@ public class ContactUsVO {
 	public void setSubcode(String subcode) {
 		this.subcode = subcode;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
-	public int getBoard_readcnt() {
-		return board_readcnt;
+	public int getReadcnt() {
+		return readcnt;
 	}
-	public void setBoard_readcnt(int board_readcnt) {
-		this.board_readcnt = board_readcnt;
+	public void setReadcnt(int readcnt) {
+		this.readcnt = readcnt;
 	}
 	public int getRoot() {
 		return root;
@@ -113,11 +103,7 @@ public class ContactUsVO {
 	public void setIndent(int indent) {
 		this.indent = indent;
 	}
-	public Date getBoard_write_date() {
-		return board_write_date;
-	}
-	public void setBoard_write_date(Date board_write_date) {
-		this.board_write_date = board_write_date;
-	}
-		
+
+	
+	
 }

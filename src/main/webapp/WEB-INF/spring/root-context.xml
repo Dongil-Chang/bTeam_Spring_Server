@@ -4,7 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<context:component-scan base-package="common, contactus, iot, reservation, member, notice, manager" />
+	<context:component-scan base-package="faq, product, common, contactus, iot, reservation, member, notice, manager" />
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- default.xml을 사용하겠다 선언 -->

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>IoT과정 ${title }</title>
+<title>소소한 스토리지 ${title }</title>
 <link rel="icon" type="image/x-icon" href="imgs/hanul.ico">
 <link rel="stylesheet" type="text/css" href="css/common.css?v=<%=new java.util.Date().getTime()%>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

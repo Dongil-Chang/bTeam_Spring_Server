@@ -3,7 +3,18 @@ package member;
 public class MemberVO {
 	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, 
 		commcode, subcode, social_email, social_type, booking;
+	private int no;
 	
+	public int getNo() {
+		return no;
+	}
+
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+
 	public MemberVO() {}
 	
 	

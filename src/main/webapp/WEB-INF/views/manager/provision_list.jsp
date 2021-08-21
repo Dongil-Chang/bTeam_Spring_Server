@@ -28,7 +28,7 @@
 		<tbody>
 			<c:if test="${empty provision }">
 				<tr>
-					<td colspan='2'>방명록 정보가 없습니다.</td>
+					<td colspan='2'>이용약관 정보가 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:forEach items="${provision}" var="vo">

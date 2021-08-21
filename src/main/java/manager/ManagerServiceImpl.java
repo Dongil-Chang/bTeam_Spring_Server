@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import member.MemberPage;
 import member.MemberVO;
 
 @Service
@@ -43,28 +44,9 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public void faq_insert(FaqVO vo) {
-		dao.faq_insert(vo);
+	public MemberPage member_list(MemberPage page) {
+		return dao.member_list(page);
 	}
 
-	@Override
-	public List<FaqVO> faq_list() {
-		return dao.faq_list();
-	}
-
-	@Override
-	public FaqVO faq_detail(String faq_code) {
-		return dao.faq_detail(faq_code);
-	}
-
-	@Override
-	public void faq_update(FaqVO vo) {
-		dao.faq_update(vo);
-	}
-
-	@Override
-	public void faq_delete(String faq_code) {
-		dao.faq_delete(faq_code);
-	}
 
 }

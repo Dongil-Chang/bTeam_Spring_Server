@@ -3,6 +3,7 @@ package com.so.storage.common;
 //import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -92,6 +93,13 @@ public class MemberController {
 		 
 	}
 	
+	@ResponseBody
+	@RequestMapping("/and_accountUpdate")
+	public void account_update(MemberVO vo, HttpServletResponse res) throws Exception {
+		service.member_update(vo);
+		common_gson(res, vo);
+	}
+	
 	
 	// 마이페이지 화면 이동
 	@RequestMapping("/mypage.my")
@@ -114,7 +122,21 @@ public class MemberController {
 		return "member/";
 	}
 	
+	@ResponseBody @RequestMapping("/and_memberList")
+	public void mg_memberList(HttpServletResponse res) throws Exception {
+		List<MemberVO> list = service.mg_member_list();
+		common_gson(res, list);
+	}
+	
 	public void common_gson(HttpServletResponse res, MemberVO vo) throws Exception {
+		Gson gson = new Gson(); 
+		String json = gson.toJson(vo);
+		PrintWriter out;
+		out = res.getWriter();
+		out.println(json);
+	}
+	
+	public void common_gson(HttpServletResponse res, List<MemberVO> vo) throws Exception {
 		Gson gson = new Gson(); 
 		String json = gson.toJson(vo);
 		PrintWriter out;

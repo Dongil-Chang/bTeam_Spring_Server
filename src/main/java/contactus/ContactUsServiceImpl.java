@@ -1,5 +1,6 @@
 package contactus;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,33 @@ public class ContactUsServiceImpl implements ContactUsService {
 
 	@Override
 	public void cu_delete(int board_num) {
-		// TODO Auto-generated method stub
+		dao.cu_delete(board_num);
+	}
 
+	@Override
+	public ContactUsPage cu_list(ContactUsPage page) {
+		return dao.cu_list(page);
+	}
+
+	@Override
+	public void cu_reply_update(ContactUsVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cu_read(int board_num) {
+		dao.cu_read(board_num);
+	}
+
+	@Override
+	public void cu_reply_insert(ContactUsVO vo) {
+		dao.cu_reply_insert(vo);
+	}
+
+	@Override
+	public ContactUsPage cu_list(HashMap<String, Object> map) {
+		return dao.cu_list(map);
 	}
 
 }

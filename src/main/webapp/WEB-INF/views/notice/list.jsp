@@ -16,9 +16,9 @@
 			<li>
 				<select name='search' class='w-px90'>
 					<option value="all"  ${page.search eq 'all' ? 'selected' : '' }>전체</option>
-					<option value="title" ${page.search eq 'board_title' ? 'selected' : '' }>제목</option>
-					<option value="content" ${page.search eq 'board_content' ? 'selected' : '' }>내용</option>
-					<option value="writer" ${page.search eq 'board_writer' ? 'selected' : '' }>작성자</option>
+					<option value="board_title" ${page.search eq 'board_title' ? 'selected' : '' }>제목</option>
+					<option value="board_content" ${page.search eq 'board_content' ? 'selected' : '' }>내용</option>
+					<option value="board_writer" ${page.search eq 'board_writer' ? 'selected' : '' }>작성자</option>
 				</select>
 			</li>
 			<li><input type="text" name='keyword' value='${page.keyword }' class='w-px300' /></li>
@@ -28,7 +28,7 @@
 		<ul>
 			<!-- 관리자로 로그인된 경우만 글쓰기 가능 -->
 			<!-- 로그인 시 정보를 담고 있는 session.setAttribute("loginInfo", vo)을 통해 admin 값을 가져와 비교함. -->			
-			<c:if test="${loginInfo.subcode eq '3  '}">
+			<c:if test="${loginInfo.subcode eq '3'}">
 				<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
 			</c:if>
 		</ul>
@@ -54,12 +54,12 @@
 		</c:if>
 		<c:forEach items = '${page.list }' var='vo'>
 			<tr>
-				<td>${vo.board_num }</td>
+				<td>${vo.no }</td>
 				<td class='left'>
 					<c:forEach begin="1" end ="${vo.indent }" var="i">
 						${i eq vo.indent ? "<img src='imgs/re.gif' />" : "&nbsp;&nbsp;" } 
 					</c:forEach>
-					<a href='detail.no?board_num=${vo.board_num}'>${vo.board_title }</a>
+					<a href='detail.no?id=${vo.board_num}'>${vo.board_title }</a>
 					</td>
 				<td>${vo.name }</td>
 				<td>${vo.board_write_date }</td>

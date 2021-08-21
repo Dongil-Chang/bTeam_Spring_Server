@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -37,5 +38,23 @@ public class HomeController {
 		session.removeAttribute("category");
 		return "home";
 	}
+	
+	@RequestMapping("/error")
+	public String error(HttpSession session, HttpServletRequest request, Model model) {
+		session.setAttribute("category", "error");
+		
+		Throwable error = (Throwable) request.getAttribute("javax.servlet.error.exception");
+		StringBuffer msg = new StringBuffer();
+		while( error != null ) {
+			msg.append("<p>").append(error.getMessage() ).append("</p>");
+			error = error.getCause();
+		}
+		model.addAttribute("msg", msg.toString());
+		
+		int code = (Integer) request.getAttribute("javax.servlet.error.status_code");
+		return "error/" + (code==404 ? 404 : "common");
+	}
+	
+	
 	
 }

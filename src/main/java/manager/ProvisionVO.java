@@ -1,13 +1,16 @@
 package manager;
 
 public class ProvisionVO {
-	private String provision_code, provision_nm, provision_content, provision_required;
+	private int provision_code;
+	private String provision_nm, provision_content, provision_required;
 
-	public String getProvision_code() {
+	
+
+	public int getProvision_code() {
 		return provision_code;
 	}
 
-	public void setProvision_code(String provision_code) {
+	public void setProvision_code(int provision_code) {
 		this.provision_code = provision_code;
 	}
 

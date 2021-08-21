@@ -10,6 +10,7 @@
 	<h3>회원 목록</h3>
 	<div id='list-top'>
 		<form action="list.hr" method="post">
+		<input type="hidden" name="curPage" value="1" />
 			<div>
 				<ul>
 					<li>
@@ -20,6 +21,8 @@
 							<option value="writer" ${page.search eq 'writer' ? 'selected' : '' }>작성자</option>
 						</select>
 					</li>
+					<li><input type="text" name='keyword' value='${page.keyword }' class='w-px300' /></li>
+					<li><a class='btn-fill' onclick='$("form").submit()'>검색</a></li>
 				</ul>
 			</div>	
 		</form>
@@ -37,7 +40,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${member }" var="vo">
+			<c:forEach items="${page.list }" var="vo">
 				<tr>
 					<td>${vo.id }</td>
 					<td>${vo.name }</td>
@@ -58,5 +61,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class='btnSet'>
+		<jsp:include page="/WEB-INF/views/include/page.jsp" />
+	</div>
 </body>
 </html>

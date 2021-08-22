@@ -1,7 +1,7 @@
 package member;
 
 public class MemberVO {
-	private String member_code, id, pw, name, email, addr, tel, birth, naver_login, kakao_login, 
+	private String member_code, id, pw, name, email, addr, tel, birth, naver, kakao, 
 		commcode, subcode, social_email, social_type, booking;
 	private int no;
 	
@@ -125,21 +125,27 @@ public class MemberVO {
 		this.birth = birth;
 	}
 
-	public String getNaver_login() {
-		return naver_login;
+
+
+	public String getNaver() {
+		return naver;
 	}
 
-	public void setNaver_login(String naver_login) {
-		this.naver_login = naver_login;
+
+	public void setNaver(String naver) {
+		this.naver = naver;
 	}
 
-	public String getKakao_login() {
-		return kakao_login;
+
+	public String getKakao() {
+		return kakao;
 	}
 
-	public void setKakao_login(String kakao_login) {
-		this.kakao_login = kakao_login;
+
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
 	}
+
 
 	public String getCommcode() {
 		return commcode;

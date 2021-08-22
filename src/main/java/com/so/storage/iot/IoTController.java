@@ -1,5 +1,7 @@
 package com.so.storage.iot;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,23 @@ public class IoTController {
 	
 	@RequestMapping("/arduSetIoT")
 	public String insert_temhum_iot(IoTVO vo, HttpServletRequest req, Model model) {
-		// System.out.println("온도 : " + req.getParameter("temp"));
-		// System.out.println("습도 : " + req.getParameter("hum"));
+		System.out.println("온도 : " + req.getParameter("temp") + "℃");
+		System.out.println("습도 : " + req.getParameter("hum") + "%");
+		System.out.println("압력 : " + req.getParameter("b_press"));
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", "hanul");
+		map.put("temp", req.getParameter("temp"));
+		map.put("hum", req.getParameter("hum"));
+		map.put("product_code", "CS0001");
+		map.put("door_values", "4444");
+		map.put("b_press", req.getParameter("press"));
+		
 //		model.addAttribute("vo", req.getParameter("temp"));
 //		model.addAttribute("vo", req.getParameter("hum"));
-
-		service.IoT_insert_TemHum(vo);
-
-		return "iot/arduSetIoT";
+		
+		model.addAttribute("map", service.IoT_insert_TemHum(map));
+		return "redirect:checkIoT";
 	}
 	
 	@RequestMapping("/checkIoT")

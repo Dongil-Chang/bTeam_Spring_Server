@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import common.CommonService;
 import member.MemberServiceImpl;
@@ -24,6 +25,46 @@ public class LoginController {
 	
 	private String naver_client_id = "ovR_Ev7EIZwvwrn0hdtU";
 	private String kakao_client_id = "cc9bdae0822f9a889e46d57641df634c";
+	private String google_client_id = "020138534296-c4itm32e1q58c2ggrqfkod81b4b4cntt.apps.googleusercontent.com";
+	
+	// 구글 로그인 요청
+		@ResponseBody
+		@RequestMapping("/googleLogin")
+		public String googleLogin(MemberVO vo, HttpSession session, RedirectAttributes rttr, MemberVO mvo) throws Exception{
+			MemberVO returnVO = service.loginMemberByGoogle(vo);
+			String mvo_ajaxid = mvo.getId(); 
+			System.out.println("C: 구글아이디 포스트 db에서 가져온 vo "+ vo);
+			System.out.println("C: 구글아이디 포스트 ajax에서 가져온 id "+ mvo_ajaxid);
+			
+			if(returnVO == null) { //아이디가 DB에 존재하지 않는 경우
+				//구글 회원가입
+				service.joinMemberByGoogle(vo);	
+				
+				//구글 로그인
+				returnVO = service.loginMemberByGoogle(vo);
+				session.setAttribute("id", returnVO.getId());			
+				rttr.addFlashAttribute("mvo", returnVO);
+			}
+			
+			if(mvo_ajaxid.equals(returnVO.getId())){ //아이디가 DB에 존재하는 경우
+				//구글 로그인
+				service.loginMemberByGoogle(vo);
+				session.setAttribute("id", returnVO.getId());			
+				rttr.addFlashAttribute("mvo", returnVO);
+			}else {//아이디가 DB에 존재하지 않는 경우
+				//구글 회원가입
+				service.joinMemberByGoogle(vo);	
+				
+				//구글 로그인
+				returnVO = service.loginMemberByGoogle(vo);
+				session.setAttribute("id", returnVO.getId());			
+				rttr.addFlashAttribute("mvo", returnVO);
+			}
+			
+			return "redirect:/";
+		}
+	
+	
 	
 	// 네이버 로그인 요청
 		@RequestMapping("/naverLogin")
@@ -43,7 +84,7 @@ public class LoginController {
 			StringBuffer url = new StringBuffer("https://nid.naver.com/oauth2.0/authorize?response_type=code");
 			url.append("&client_id=").append(naver_client_id);
 			url.append("&state=").append(state);
-			url.append("&redirect_uri=http://localhost/iot/navercallback");
+			url.append("&redirect_uri=http://localhost:8003/storage/navercallback");
 			return "redirect:" + url.toString();
 		}
 		
@@ -84,7 +125,7 @@ public class LoginController {
 				json = json.getJSONObject("response");
 				
 				MemberVO vo = new MemberVO();
-				vo.setNaver_login("naver");
+				vo.setSocial_type("naver");
 				vo.setId(json.getString("id") );
 				vo.setSocial_email(json.getString("email"));
 				vo.setName(json.getString("name"));

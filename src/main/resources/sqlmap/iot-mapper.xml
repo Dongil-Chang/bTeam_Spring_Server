@@ -4,11 +4,12 @@
 <mapper namespace="iot.mapper">
 
 	<insert id="temhumInsert">
-		insert into tbl_iot (temperature, humidity)
-		values (#{temp}, #{hum})
+		insert into tbl_iot (id, temperature, humidity, door_values, product_code, press)
+		values ( #{id, jdbcType=VARCHAR}, #{temp, jdbcType=VARCHAR}, #{hum, jdbcType=VARCHAR}
+				, #{door_values,  jdbcType=VARCHAR}, #{product_code, jdbcType=VARCHAR}, #{b_press, jdbcType=VARCHAR} )
 	</insert>
 
-	<select id="list">
+	<select id="values" resultType="iot.IoTVO">
 		select * from tbl_iot
 	</select>
 </mapper>

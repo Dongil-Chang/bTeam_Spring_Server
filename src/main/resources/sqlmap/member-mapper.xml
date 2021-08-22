@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="join_insert">
-		insert into user_member (member_code, id, pw, name, email, tel, commcode, subcode)
-		values (member_code_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{tel}, 1, 1)
+		insert into user_member (member_code, id, pw, name, email, tel, subcode)
+		values (member_code_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{tel}, 1)
 	</insert>
 	
 	<select id="pwchk" resultType="member.MemberVO">
@@ -54,5 +54,25 @@
 		select * from tbl_provision
 		where provision_nm like '%' || '이용약관' || '%'
 	</select>
+	
+	
+	<update id="social_update">
+		update user_member set name = #{name}, 
+		where ${social_type} = #{social_email}
+	</update>
+
+	<insert id="social_insert">
+		insert into user_member (member_code, id, name, ${social_type}, subcode)
+		values (member_code_seq.nextval, #{id}, #{name}, #{social_email}, 1)
+	</insert>	
+
+	<!-- social_email 존재 여부 조회 -->
+	<select id="social_email" resultType="integer">
+		select count(*) from user_member 
+		where ${social_type} = #{social_email}
+		<!-- ${social_type} 내 들어있는 동적 데이터 (즉, 네이버, 카카오) 를 불러옴. -->
+	</select>
+	
+	
 	
 </mapper>

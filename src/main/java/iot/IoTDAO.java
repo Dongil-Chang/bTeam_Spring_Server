@@ -1,5 +1,6 @@
 package iot;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,14 +13,16 @@ public class IoTDAO implements IoTService {
 	@Autowired private SqlSession sql;
 	
 	@Override
-	public void IoT_insert_TemHum(IoTVO vo) {
-		sql.insert("iot.mapper.temhumInsert", vo);
+	public int IoT_insert_TemHum(HashMap<String, Object> map) {
+		return sql.insert("iot.mapper.temhumInsert", map);
 	}
 
 	@Override
-	public List<IoTVO> IoT_list() {
-		return sql.selectList("iot.mapper.temhumList");
+	public IoTVO IoT_list() {
+		return sql.selectOne("iot.mapper.values");
 	}
+
+	
 
 	
 }

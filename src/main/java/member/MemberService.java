@@ -20,6 +20,8 @@ public interface MemberService {
 	boolean member_social_insert(MemberVO vo); //소셜회원정보 신규저장
 	boolean member_social_update(MemberVO vo); //소셜회원정보 변경저장
 	
+	MemberVO loginMemberByGoogle(MemberVO vo); // 구글 로그인 처리
+	void joinMemberByGoogle(MemberVO vo);		// 구글 회원 가입
 	
 	ProvisionVO provision_list();// 회원 약관 내용 조회
 	ProvisionVO join_service_list();// 서비스 이용 약관 내용 조회

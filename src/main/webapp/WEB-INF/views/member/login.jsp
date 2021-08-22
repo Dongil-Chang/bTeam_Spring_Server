@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1020138534296-c4itm32e1q58c2ggrqfkod81b4b4cntt.apps.googleusercontent.com">
 <title>Insert title here</title>
 <style type="text/css">
 body{
@@ -20,6 +21,7 @@ img.social { width:275px; height: 47px; }
 img.social:first-child {margin-bottom:10px;}
 
 </style>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 	<div style="width:400px;" class='center'>
@@ -37,6 +39,7 @@ img.social:first-child {margin-bottom:10px;}
 			
 			<a href='naverLogin'><img src='imgs/naver_login1.png' class='social' /></a>
 			<a href='kakaoLogin'><img src='imgs/kakao_login1.png' class='social' /></a>
+			<a href='googleLogin'><img src='imgs/google_signin.png' class='social' /></a>
 		</div>
 	</div>
 	

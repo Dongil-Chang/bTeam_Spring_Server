@@ -108,17 +108,17 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	// 마이페이지 정보 수정 화면 이동
+	// 마이페이지 정보 수정 화면 전 비밀번호 확인 페이지 이동
 	@RequestMapping("/myinfo.my")
 	public String myinfo_chk(HttpSession session) {
 		session.setAttribute("my_category", "myinfo");
 		return "member/myinfo";
 	}
 	
-	// 마이페이지 정보 수정
+	// 마이페이지 정보 수정 전 비밀번호 확인
 	@RequestMapping("/myinfo_chk")
 	public String myinfo_chk(String password) {
-		
+		service.member_pw_check(password);
 		return "member/";
 	}
 	

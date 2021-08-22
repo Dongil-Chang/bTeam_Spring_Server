@@ -41,20 +41,17 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public boolean member_social_email(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return (Integer) sql.selectOne("member.mapper.social_email", vo) == 0 ? false : true ;
 	}
 
 	@Override
 	public boolean member_social_insert(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return sql.insert("member.mapper.social_insert", vo) == 0 ? false : true;
 	}
 
 	@Override
 	public boolean member_social_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return sql.update("member.mapper.social_update", vo) == 0 ? false : true;
 	}
 
 	@Override
@@ -75,6 +72,18 @@ public class MemberDAO implements MemberService {
 	@Override
 	public List<MemberVO> mg_member_list() {
 		return sql.selectList("member.mapper.mg_memberlist");
+	}
+
+	@Override
+	public MemberVO loginMemberByGoogle(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void joinMemberByGoogle(MemberVO vo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

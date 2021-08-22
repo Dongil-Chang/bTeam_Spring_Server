@@ -40,20 +40,17 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean member_social_email(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_social_email(vo);
 	}
 
 	@Override
 	public boolean member_social_insert(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_social_insert(vo);
 	}
 
 	@Override
 	public boolean member_social_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_social_update(vo);
 	}
 
 	@Override
@@ -74,6 +71,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> mg_member_list() {
 		return dao.mg_member_list();
+	}
+
+	@Override
+	public MemberVO loginMemberByGoogle(MemberVO vo) {
+		return dao.loginMemberByGoogle(vo);
+	}
+
+	@Override
+	public void joinMemberByGoogle(MemberVO vo) {
+		dao.joinMemberByGoogle(vo);
+		
 	}
 
 }

@@ -18,7 +18,7 @@
 	<p>${loginInfo.name }님의 마이페이지 입니다.
 		<div class='my_category' style="margin-left: 100px;">
 		<ul>
-			<li><a href='storage.my' class='${my_category eq "storage" ? "active" : "" }'>내 창고</a></li>
+			<li><a href='storage.my?id=${loginInfo.id }' class='${my_category eq "storage" ? "active" : "" }'>내 창고</a></li>
 			<li><a href='booking.my' class='${my_category eq "booking" ? "active" : "" }'>예약내역</a></li>
 			<li><a href='cu_list.qa' class="${my_category eq 'cu_list' ? 'active' : ''}">1:1 문의</a></li>
 			<li><a href='myinfo.my' class="${my_category eq 'myinfo' ? 'active' : ''}">정보수정</a></li>

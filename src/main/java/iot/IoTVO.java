@@ -1,11 +1,20 @@
 package iot;
 
+import java.sql.Date;
+
 public class IoTVO {
 
 	private int iot_code; 
 	private float temperature, humidity;
-	private String id, product_code, press, press_date, door_values, door_chk, door_date;
+	private String id, product_code, press, press_date, door_values, door_chk, door_date, temhum_date;
 	
+	
+	public String getTemhum_date() {
+		return temhum_date;
+	}
+	public void setTemhum_date(String temhum_date) {
+		this.temhum_date = temhum_date;
+	}
 	public int getIot_code() {
 		return iot_code;
 	}

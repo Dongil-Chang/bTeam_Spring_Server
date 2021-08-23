@@ -16,7 +16,7 @@
 				<th class='w-px120'>제목</th>
 				<td><input type="text"  name="board_title" value="${vo.board_title }" class='chk' title='제목' /></td>				
 			</tr>		
-			<tr>
+			<tr>	
 				<th>내용</th>
 				<td><textarea name="board_content" class='chk' title='내용'>${vo.content }</textarea></td>				
 			</tr>		

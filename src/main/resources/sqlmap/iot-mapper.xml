@@ -10,6 +10,12 @@
 	</insert>
 
 	<select id="values" resultType="iot.IoTVO">
-		select * from tbl_iot
+		select * from (select * from tbl_iot order by rownum desc) 
+		where rownum = 1
+		
+<!-- 		SELECT * FROM (SELECT * FROM tbl_iot ORDER BY ROWNUM DESC) i, user_member u -->
+<!-- 		where i.id = u.id -->
+<!-- 		and ROWNUM = 1 -->
+<!-- 		and u.id = #{id} -->
 	</select>
 </mapper>

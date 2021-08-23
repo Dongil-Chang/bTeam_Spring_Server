@@ -5,9 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.cn{
+margin:0;padding:0
+}
+
+.cn::after {
+	clear : both;
+	content : '';
+	display : block;
+}
+
+.cn_left {
+	width : 35%;
+	height : 650px;
+	line-height : 650px;
+	background : #05668d;
+	float: left;
+	font-size : 50pt;
+	font-weight: 800;
+	color : #fff;
+}
+
+.cn_right {
+	width : 65%;
+	height : 400px;
+	background : #fff;
+	float: right;
+}	
+</style>
 </head>
 <body>
-<h3>공지사항</h3>
+<!-- <h3>공지사항</h3> -->
+<div class='cn'>
+	<div class='cn_left'>소소한 공지사항</div>
+	<div class='cn_right'>
 <form action="list.no" method="post">
 <input type="hidden" name="curPage" value="1" />
 <div id = 'list-top'>
@@ -70,6 +102,8 @@
 </table>
 <div class='btnSet'>
 <jsp:include page="/WEB-INF/views/include/page.jsp" />
+</div>
+</div>
 </div>
 </body>
 </html>

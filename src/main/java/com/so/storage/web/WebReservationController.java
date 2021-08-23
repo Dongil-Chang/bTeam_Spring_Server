@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //예약하기 화면 요청
 @Controller
-public class ReservationController {
+public class WebReservationController {
 	@RequestMapping ("/list.rv")
 	public String list(HttpSession session, Model model) {
 		session.setAttribute("category", "rv");

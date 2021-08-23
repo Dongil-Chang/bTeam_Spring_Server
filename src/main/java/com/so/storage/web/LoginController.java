@@ -64,7 +64,75 @@ public class LoginController {
 			return "redirect:/";
 		}
 	
-	
+		//카카오로그인요청
+		  @RequestMapping(value="/kakaoLogin")
+		    public String kakaoLogin(HttpSession session) {
+//		        StringBuffer loginUrl = new StringBuffer();
+//		        loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
+//		        loginUrl.append("3a5fc5678034a31a4a50212f089a8cf7"); 
+//		        loginUrl.append("&redirect_uri=");
+//		        loginUrl.append("http://localhost/web/kakaocallback"); 
+//		        loginUrl.append("&response_type=code");
+				String state = UUID.randomUUID().toString();
+				session.setAttribute("state", state);
+				
+		        StringBuffer url = new StringBuffer(
+		        		"https://kauth.kakao.com/oauth/authorize?response_type=code");
+		        url.append("&client_id=").append(kakao_client_id);
+		        url.append("&redirect_uri=http://localhost:8003/storage/kakaocallback");
+		        url.append("&state=").append(state);
+		        
+//		        return "redirect:"+loginUrl.toString();
+		        return "redirect:"+url.toString();
+		    }
+		
+		  
+		  
+		  @RequestMapping("/kakaocallback")
+			public String kakaocallback(@RequestParam(required = false) String code
+					, String state, HttpSession session
+										, @RequestParam(required = false) String error) {
+				if ( !state.equals( session.getAttribute("state") ) || error!=null ) {
+					return "redirect:/";
+				}
+				
+				StringBuffer url = new StringBuffer(
+					"https://kauth.kakao.com/oauth/token?grant_type=authorization_code");
+				url.append("&client_id=").append(kakao_client_id);
+				//url.append("&client_secret=FZn2ljqDGsK4MyRotzIhV8kd169VMWom");
+				url.append("&code=").append(code);
+				url.append("&state=").append(state);
+				
+				
+				JSONObject json = new JSONObject( common.requestAPI(url) );
+				String token = json.getString("access_token");
+				String type = json.getString("token_type");
+				
+				url = new StringBuffer("https://kapi.kakao.com/v2/user/me");
+				json = new JSONObject( common.requestAPI(url, type + " " + token) );
+				
+				JSONObject top = json;
+				
+				MemberVO vo = new MemberVO();
+				vo.setSocial_type("kakao");
+				vo.setId( json.get("id").toString() );
+				
+				json = json.getJSONObject("kakao_account");
+				vo.setSocial_email( json.has("email") ? json.getString("email") : "");
+				json = json.getJSONObject("profile");
+				vo.setName( json.getString("nickname") );
+				
+				if( service.member_social_email(vo) )
+					service.member_social_update(vo);
+				else 
+					service.member_social_insert(vo);
+				
+				session.setAttribute("loginInfo", vo);
+				
+				return "redirect:/";
+			}
+		
+		
 	
 	// 네이버 로그인 요청
 		@RequestMapping("/naverLogin")

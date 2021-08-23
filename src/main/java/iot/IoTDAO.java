@@ -18,11 +18,9 @@ public class IoTDAO implements IoTService {
 	}
 
 	@Override
-	public IoTVO IoT_list() {
-		return sql.selectOne("iot.mapper.values");
+	public IoTVO IoT_list(String id) {
+		return sql.selectOne("iot.mapper.values", "id");
 	}
-
-	
 
 	
 }

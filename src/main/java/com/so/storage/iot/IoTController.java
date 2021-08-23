@@ -3,6 +3,7 @@ package com.so.storage.iot;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +39,16 @@ public class IoTController {
 		return "redirect:checkIoT";
 	}
 	
-	@RequestMapping("/checkIoT")
-	public String IoT_list_TemHum(IoTVO vo, HttpServletRequest req, Model model) {
-		model.addAttribute("vo",service.IoT_list());
-		return "iot/temHumVal";
+//	@RequestMapping("/checkIoT")
+//	public String IoT_list_TemHum(IoTVO vo, HttpServletRequest req, Model model) {
+//		model.addAttribute("vo",service.IoT_list(id));
+//		return "iot/temHumVal";
+//	}
+	
+	@RequestMapping("/storage.my")
+	public String IoT_list(Model model, HttpSession session, String id) {
+		model.addAttribute("vo",service.IoT_list(id));
+		return "mypage/myStorage";
 	}
+	
 }

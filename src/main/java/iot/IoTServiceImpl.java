@@ -17,8 +17,8 @@ public class IoTServiceImpl implements IoTService {
 	}
 
 	@Override
-	public IoTVO IoT_list() {
-		return dao.IoT_list();
+	public IoTVO IoT_list(String id) {
+		return dao.IoT_list(id);
 	}
 	
 
